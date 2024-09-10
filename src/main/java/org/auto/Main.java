@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            // Step 1: Launch Edge using the desktop shortcut with remote debugging enabled
+            //Launch Edge using the desktop shortcut with remote debugging enabled
             String desktopIconPath = "C:\\Users\\sushant.raj\\Desktop\\Profile 1 - Edge.lnk"; // Update with your path
             String command = String.format("cmd /c start \"\" \"%s\" --remote-debugging-port=9222", desktopIconPath);
             Runtime.getRuntime().exec(command);
@@ -24,7 +24,7 @@ public class Main {
             // Wait for Edge to fully launch
             Thread.sleep(5000); // Adjust the sleep time as needed
 
-            // Step 2: Set up Edge WebDriver to connect to the existing Edge instance
+            //Set up Edge WebDriver to connect to the existing Edge instance
             WebDriverManager.edgedriver().setup();
             EdgeOptions options = new EdgeOptions();
             options.setExperimentalOption("debuggerAddress", "localhost:9222");
