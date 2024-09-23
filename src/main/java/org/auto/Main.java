@@ -6,6 +6,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -14,8 +15,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        
         try {
+            killExistingEdgeInstances();
             //Launch Edge using the desktop shortcut with remote debugging enabled
             String desktopIconPath = "C:\\Users\\sushant.raj\\Desktop\\Profile 1 - Edge.lnk"; // Update with your path
             String command = String.format("cmd /c start \"\" \"%s\" --remote-debugging-port=9222", desktopIconPath);
@@ -100,6 +103,16 @@ public class Main {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void killExistingEdgeInstances() throws IOException {
+        try{
+            String killCommand = "taskkill /F /IM msedge.exe";
+            Runtime.getRuntime().exec(killCommand);
+            System.out.println("Killed all existing Edge instances.");
+        }catch (Exception e){
+            System.out.println("Something went wrong " +  e.getMessage());
         }
     }
 }
